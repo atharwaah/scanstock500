@@ -303,16 +303,70 @@ export default function App() {
 
             {detail?.trade_plan && (
               <section className="trade-plan-card">
-                <div><div className="card-label">BREAKOUT TRADE PLAN</div><p className="trade-plan-note">Scanner-generated levels based on the current resistance zone. These are test levels, not predictions.</p></div>
-                <div className="trade-plan-grid">
-                  <div><span>Buy at</span><strong>₹{detail.trade_plan.buy_at.toFixed(2)}</strong></div>
-                  <div><span>Stop loss</span><strong>₹{detail.trade_plan.stop_loss.toFixed(2)}</strong></div>
-                  <div><span>Sell / Target 1</span><strong>₹{detail.trade_plan.sell_at_target_1.toFixed(2)}</strong></div>
-                  <div><span>Sell / Target 2</span><strong>₹{detail.trade_plan.sell_at_target_2.toFixed(2)}</strong></div>
+                <div>
+                  <div className="card-label">BREAKOUT TRADE PLAN</div>
+                  <p className="trade-plan-note">
+                    Scanner-generated levels based on the current resistance zone. These are test levels, not predictions.
+                  </p>
                 </div>
-                <div className="trade-plan-actions"><input type="number" min="1" value={paperAmount} onChange={e => setPaperAmount(Math.max(1, Number(e.target.value) || 1))} /><button className="primary-button" onClick={() => paperBuy(selected, detail.price, paperAmount)}>Paper Buy at current ₹{detail.price.toFixed(2)}</button><button className="reset-button" onClick={() => setShowPortfolio(true)}>View Portfolio</button></div>
+            
+                <div className="trade-plan-grid">
+                  <div>
+                    <span>Buy at</span>
+                    <strong>₹{detail.trade_plan.buy_at.toFixed(2)}</strong>
+                  </div>
+            
+                  <div>
+                    <span>Stop loss</span>
+                    <strong>₹{detail.trade_plan.stop_loss.toFixed(2)}</strong>
+                  </div>
+            
+                  <div>
+                    <span>Sell / Target 1</span>
+                    <strong>₹{detail.trade_plan.sell_at_target_1.toFixed(2)}</strong>
+                  </div>
+            
+                  <div>
+                    <span>Sell / Target 2</span>
+                    <strong>₹{detail.trade_plan.sell_at_target_2.toFixed(2)}</strong>
+                  </div>
+                </div>
               </section>
             )}
+            
+            <section className="trade-plan-card">
+              <div>
+                <div className="card-label">PAPER TRADING</div>
+                <p className="trade-plan-note">
+                  Simulate a purchase using your virtual portfolio. No real order is placed.
+                </p>
+              </div>
+            
+              <div className="trade-plan-actions">
+                <input
+                  type="number"
+                  min="1"
+                  value={paperAmount}
+                  onChange={e =>
+                    setPaperAmount(Math.max(1, Number(e.target.value) || 1))
+                  }
+                />
+            
+                <button
+                  className="primary-button"
+                  onClick={() => paperBuy(selected, detail.price, paperAmount)}
+                >
+                  Paper Buy at current ₹{detail.price.toFixed(2)}
+                </button>
+            
+                <button
+                  className="reset-button"
+                  onClick={() => setShowPortfolio(true)}
+                >
+                  View Portfolio
+                </button>
+              </div>
+            </section>
 
             <section className="signal-grid">
               <div className="info-card">
